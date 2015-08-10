@@ -1,0 +1,50 @@
+<html>
+    <head>
+	<title>jTag Demo</title>
+    <style type="text/css">
+        .tag {
+            color: white;
+            background-color: blue;
+        }
+        #tags {
+            height: 80px;
+            display: inline;
+        }
+        .tokens {
+            float: left;
+            display: inline;
+        }
+        #tags #tag-input {
+            margin-left: 5px;
+        }
+        input {
+            border: 0;
+            outline: none;
+        }
+        input:focus {
+            border: 0;
+            outline: none;
+        }
+        #tags span {
+            color: white;
+            background-color: #4A8EFC;
+            margin-left: 5px;
+            font-family: 'Helvetica';
+            font-weight: bold;
+            font-size: 12px;
+            padding: 6px;
+            border-radius: 2px;
+        }
+    </style>
+    </head>
+    <body>
+    <div id="tags" data-target="tag-input">
+        <input id="tag-input" type="text" placeholder="Add category">
+    </div>
+    </body>
+    <script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="jtag.js"></script>
+    <script type="text/javascript">
+        $('#tag-input').tag();
+    </script>
+</html>
