@@ -1,14 +1,20 @@
 
 (function($) {
-    var delimiters = [',', '|'];
     var tags = [];
     var inputCtx = null;
     var tokenCtx = null;
+    var config = {
+        delimiters: [',', '|'],
+        onAddTag: null,
+        onRemoveTag: null
+    }
 
     var _createTag = function(token) {
         if (tags.indexOf(token) > -1)
             return;
         tags.push(token);
+        if (config.onAddTag)
+            config.onAddTag();
         tokenCtx.append('<span>' + token + '</span>');
         inputCtx.val("");
         tokenCtx.find('span').on('click', function() {
@@ -19,9 +25,15 @@
     var _removeTag = function(token) {
         $(tokenCtx.find('span')[tags.indexOf(token)]).remove();
         tags.pop(token);
+        if (config.onRemoveTag)
+            config.onRemoveTag();
     }
 
-    $.fn.tag = function() {
+    $.fn.tag = function(options) {
+        config.delimiters = options.delimiters || config.delimiters;
+        config.onAddTag = options.onAddTag || null;
+        config.onRemoveTag = options.onRemoveTag || null;
+
         inputCtx = $(this);
         inputCtx.parent().on('click', function() {
             inputCtx.focus();
@@ -40,8 +52,8 @@
                 _createTag($(this).val());
             } else {
             // check if character is a delimiter
-                for (var i = 0; i < delimiters.length; i++) {
-                    if (delimiters[i] == String.fromCharCode(keycode))
+                for (var i = 0; i < config.delimiters.length; i++) {
+                    if (config.delimiters[i] == String.fromCharCode(keycode))
                         _createTag($(this).val());
                 };
             }
