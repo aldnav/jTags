@@ -6,9 +6,19 @@
     var tokenCtx = null;
 
     var _createTag = function(token) {
+        if (tags.indexOf(token) > -1)
+            return;
         tags.push(token);
         tokenCtx.append('<span>' + token + '</span>');
         inputCtx.val("");
+        tokenCtx.find('span').on('click', function() {
+            _removeTag($(this).text());
+        });
+    }
+
+    var _removeTag = function(token) {
+        $(tokenCtx.find('span')[tags.indexOf(token)]).remove();
+        tags.pop(token);
     }
 
     $.fn.tag = function() {
@@ -36,5 +46,6 @@
                 };
             }
         });
+
     }
 })(jQuery);
