@@ -10,7 +10,8 @@
     }
 
     var _createTag = function(token) {
-        if (tags.indexOf(token) > -1)
+        token = token.trim();
+        if (tags.indexOf(token) > -1 || token.length <= 0)
             return;
         tags.push(token);
         if (config.onAddTag)
