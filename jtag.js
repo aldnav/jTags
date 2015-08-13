@@ -40,7 +40,20 @@
         config.onAddTag = options.onAddTag || null;
         config.onRemoveTag = options.onRemoveTag || null;
     }
-
+    /** Initialize tags if tags are already provided
+     * @param  {Object}
+     */
+    function initialize_tags(options) {
+        if (typeof options === 'undefined')
+            return false;
+        _tags = options.tags || [];
+        for (var i = 0; i < _tags.length; i++) {
+            _createTag(_tags[i]);
+        };
+    }
+    /** Hook 'tag' to any jQuery element
+     * @param  {Object}
+     */
     $.fn.tag = function(options) {
         initialize(options);
 
@@ -50,6 +63,7 @@
         });
         inputCtx.parent().prepend("<div class='tokens'></div>");
         tokenCtx = inputCtx.parent().find('.tokens');
+        initialize_tags(options);
 
         inputCtx.on('keypress', function(e) {
             e.stopPropagation();
