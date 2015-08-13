@@ -8,7 +8,9 @@
         onAddTag: null,
         onRemoveTag: null
     }
-
+    /** Adds a tag from list of tags
+     * @param  {String}
+     */
     var _createTag = function(token) {
         token = token.trim();
         if (tags.indexOf(token) > -1 || token.length <= 0)
@@ -22,7 +24,9 @@
             _removeTag($(this).text());
         });
     }
-
+    /** Removes the tag from list of tags
+     * @param  {String}
+     */
     var _removeTag = function(token) {
         var index = tags.indexOf(token);
         if (index <= -1)
@@ -32,7 +36,9 @@
         if (config.onRemoveTag)
             config.onRemoveTag();
     }
-
+    /** Initialize configuration for jtags
+     * @param  {Object}
+     */
     function initialize(options) {
         if (typeof options === 'undefined')
             return false;
