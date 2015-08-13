@@ -15,7 +15,7 @@
         tags.push(token);
         if (config.onAddTag)
             config.onAddTag();
-        tokenCtx.append('<span>' + token + '</span>');
+        tokenCtx.append('<span title="Remove tag">' + token + '</span>');
         inputCtx.val("");
         tokenCtx.find('span').on('click', function() {
             _removeTag($(this).text());
