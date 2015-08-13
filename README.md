@@ -19,3 +19,16 @@ Now you would be able to create tags for the following markup:
     $('#tag-input').tag();
 </script>
 ```
+There are functionalities available with jTag, such as:
+``` javascript
+    $('#tag-input').tag({
+        tags: ['ubuntu', 'mac os', 'windows 10'],
+        onAddTag: function() {
+            alert('A tag was added!');
+        },
+        onRemoveTag: function() {
+            alert('A tag was removed!');
+        }
+    });
+```
+Feel free to contribute!
