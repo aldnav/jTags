@@ -29,10 +29,16 @@
             config.onRemoveTag();
     }
 
-    $.fn.tag = function(options) {
-        config.delimiters = options.delimiters || config.delimiters;
+    function initialize(options) {
+        if (typeof options === 'undefined')
+            return false;
+        config.delimiters = options.delimiters || [',', '|'];
         config.onAddTag = options.onAddTag || null;
         config.onRemoveTag = options.onRemoveTag || null;
+    }
+
+    $.fn.tag = function(options) {
+        initialize(options);
 
         inputCtx = $(this);
         inputCtx.parent().on('click', function() {
