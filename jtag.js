@@ -24,6 +24,8 @@
 
     var _removeTag = function(token) {
         var index = tags.indexOf(token);
+        if (index <= -1)
+            return false;
         $(tokenCtx.find('span')[index]).remove();
         tags.splice(index, 1);
         if (config.onRemoveTag)
@@ -63,6 +65,15 @@
                     if (config.delimiters[i] == String.fromCharCode(keycode))
                         _createTag($(this).val());
                 };
+            }
+        });
+        // needed keydown event to listen for nonprintable keys (Backspace)
+        inputCtx.on('keydown', function(e) {
+            e.stopPropagation();
+            if (e.keyCode)
+                var keycode = e.keyCode;
+            if (keycode == 8 && $(this).val().length <= 0) {
+                _removeTag(tags[tags.length-1]);
             }
         });
 
