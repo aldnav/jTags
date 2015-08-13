@@ -1,8 +1,9 @@
 # jTag
 Simple implementation of tagging via jQuery.
+
 ![alt text](http://i.imgur.com/5TmWuFe.png "jTag")
 ##Usage
--------
+---
 In order for jTag to work, grab a copy of jQuery and include both jQuery and
 jtag script like so:
 ``` html
