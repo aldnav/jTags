@@ -24,6 +24,7 @@ There are functionalities available with jTag, such as:
 ``` javascript
     $('#tag-input').tag({
         tags: ['ubuntu', 'mac os', 'windows 10'],
+        delimiters: [',', '|'],
         onAddTag: function() {
             alert('A tag was added!');
         },
