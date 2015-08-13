@@ -23,8 +23,9 @@
     }
 
     var _removeTag = function(token) {
-        $(tokenCtx.find('span')[tags.indexOf(token)]).remove();
-        tags.pop(token);
+        var index = tags.indexOf(token);
+        $(tokenCtx.find('span')[index]).remove();
+        tags.splice(index, 1);
         if (config.onRemoveTag)
             config.onRemoveTag();
     }
