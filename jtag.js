@@ -11,8 +11,10 @@
     /** Adds a tag from list of tags
      * @param  {String}
      */
-    var _createTag = function(token) {
+    var _createTag = function(token, separator) {
         token = token.trim();
+        separator = typeof separator !== 'undefined' ? separator : ',';
+        token = token.split(separator)[0]
         if (tags.indexOf(token) > -1 || token.length <= 0)
             return;
         tags.push(token);
@@ -85,8 +87,10 @@
             } else {
             // check if character is a delimiter
                 for (var i = 0; i < config.delimiters.length; i++) {
-                    if (config.delimiters[i] == String.fromCharCode(keycode))
-                        _createTag($(this).val());
+                    if (config.delimiters[i] == String.fromCharCode(keycode)){
+                        _createTag($(this).val(), config.delimiters[i]);
+                        break;
+                    }
                 };
             }
         });
