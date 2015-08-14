@@ -1,4 +1,4 @@
-/* jshint undef: true, unused: true */
+
 (function($) {
     var tags = [];
     var inputCtx = null;
