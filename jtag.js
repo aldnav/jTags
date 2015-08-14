@@ -1,4 +1,4 @@
-
+/* jshint undef: true, unused: true */
 (function($) {
     var tags = [];
     var inputCtx = null;
@@ -7,14 +7,14 @@
         delimiters: [',', '|'],
         onAddTag: null,
         onRemoveTag: null
-    }
+    };
     /** Adds a tag from list of tags
      * @param  {String}
      */
     var _createTag = function(token, separator) {
         token = token.trim();
         separator = typeof separator !== 'undefined' ? separator : ',';
-        token = token.split(separator)[0]
+        token = token.split(separator)[0];
         if (tags.indexOf(token) > -1 || token.length <= 0)
             return;
         tags.push(token);
@@ -27,7 +27,7 @@
         tokenCtx.find('span').last().on('click', function() {
             _removeTag($(this).text());
         });
-    }
+    };
     /** Removes the tag from list of tags
      * @param  {String}
      */
@@ -39,7 +39,7 @@
         tags.splice(index, 1);
         if (config.onRemoveTag)
             config.onRemoveTag();
-    }
+    };
     /** Initialize configuration for jtags
      * @param  {Object}
      */
@@ -56,10 +56,10 @@
     function initialize_tags(options) {
         if (typeof options === 'undefined')
             return false;
-        _tags = options.tags || [];
+        var _tags = options.tags || [];
         for (var i = 0; i < _tags.length; i++) {
             _createTag(_tags[i]);
-        };
+        }
     }
     /** Hook 'tag' to any jQuery element
      * @param  {Object}
@@ -77,10 +77,11 @@
 
         inputCtx.on('keypress', function(e) {
             e.stopPropagation();
+            var keycode = null;
             if (e.keyCode)
-                var keycode = e.keyCode;
+                keycode = e.keyCode;
             else
-                var keycode = e.charCode;
+                keycode = e.charCode;
             if (keycode == 13){
             // check if Return is pressed or
                 _createTag($(this).val());
@@ -91,18 +92,19 @@
                         _createTag($(this).val(), config.delimiters[i]);
                         break;
                     }
-                };
+                }
             }
         });
         // needed keydown event to listen for nonprintable keys (Backspace)
         inputCtx.on('keydown', function(e) {
             e.stopPropagation();
+            var keycode = null;
             if (e.keyCode)
-                var keycode = e.keyCode;
+                keycode = e.keyCode;
             if (keycode == 8 && $(this).val().length <= 0) {
                 _removeTag(tags[tags.length-1]);
             }
         });
 
-    }
+    };
 })(jQuery);
